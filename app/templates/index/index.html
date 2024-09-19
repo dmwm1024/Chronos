@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% import "theme/top_container.html" as top_container %}
+
+{% block content %}
+<header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-dashboard"></i> Dashboard - {{ league['data']['league']['name'] }}</b></h5>
+</header>
+
+<div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+        <div class="w3-container w3-red w3-padding-16">
+            <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+            <div class="w3-right">
+                <h3>{{ divisions['data']['league']['divisions']|length }}</h3>
+            </div>
+            <div class="w3-clear "></div>
+            <h4>Total Divisions</h4>
+        </div>
+    </div>
+    <div class="w3-quarter">
+        <a href="#">
+            <div class="w3-container w3-blue w3-padding-16">
+                <div class="w3-left"><i class="fa fa-building-o w3-xxxlarge"></i></div>
+                <div class="w3-right">
+                    <h3>#</h3>
+                </div>
+                <div class="w3-clear"></div>
+                <h4>Total Venues</h4>
+            </div>
+        </a>
+    </div>
+    <div class="w3-quarter">
+        <div class="w3-container w3-teal w3-padding-16">
+            <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+            <div class="w3-right">
+                <h3>#</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Total Teams</h4>
+        </div>
+    </div>
+</div>
+
+<div class="w3-container">
+    <br>
+    <h5>All Divisions</h5>
+    <div class="w3-row-padding" style="margin:0 -16px">
+        <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white w3-margin-top">
+            <thead>
+                <th>Division Name</th>
+                <th>Division Format</th>
+                <th>Week Night</th>
+                <th>Team(s)</th>
+            </thead>
+            {% for d in divisions['data']['league']['divisions'] %}
+            <tr>
+                <td><a href="#">{{ d['number'] }} - {{ d['name'] }}</a></td>
+                <td>{{ d['format'] }}</td>
+                <td>{{ d['nightOfPlay'] }}</td>
+                <td>{{ d['teams']|length }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
